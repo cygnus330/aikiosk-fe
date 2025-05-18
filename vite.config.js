@@ -1,0 +1,17 @@
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react-swc'
+import tailwindcss from '@tailwindcss/vite'
+import { TanStackRouterVite } from "@tanstack/router-plugin/vite";
+
+// https://vitejs.dev/config/
+export default defineConfig({
+  plugins: [react(), tailwindcss(), TanStackRouterVite({ target: "react", autoCodeSplitting: true})],
+  server: {
+    proxy: {
+      '/categories': {
+        target: 'http://localhost:3000',
+        changeOrigin: true,
+      },
+    },
+  },
+})
