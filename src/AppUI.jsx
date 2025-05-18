@@ -2,6 +2,26 @@ import "./App.css";
 import { useState, useEffect, useMemo } from "react";
 import { BrowserRouter as Router, Routes, Route, useNavigate } from "react-router-dom";
 
+// 기본화면 버튼 컴포넌트 추가
+const DefaultScreenButton = () => {
+  const navigate = useNavigate();
+  const currentPath = window.location.pathname;
+  
+  const handleDefaultScreen = () => {
+    // 현재 경로에 x=0&y=0 파라미터를 추가하여 페이지 이동
+    navigate(`${currentPath}?x=0&y=0`);
+  };
+
+  return (
+    <button 
+      className="bg-white text-black w-full" 
+      onClick={handleDefaultScreen}
+    >
+      기본 화면
+    </button>
+  );
+};
+
 function AppUI() {
   return (
     <Router>
@@ -56,7 +76,7 @@ const PaymentPage = () => {
           <div className="flex-1 flex flex-col justify-center">
             <div className="h-5/29 text-[9px] bg-[#484848] flex flex-col justify-end items-center p-1 space-y-2 rounded-r-xl">
               <button className="bg-white text-black font-bold">직원 호출</button>
-              <button className="bg-white text-black">기본 화면</button>
+              <DefaultScreenButton />
               <p className="text-white text-[5px] text-xl mb-4 text-left w-full">
                 { (x == 0 && y == 0) ? '' : '*지금은 AI 개인 맞춤형 화면입니다.' }
               </p>
@@ -133,7 +153,7 @@ const CartPage = () => {
           <div className="flex-1 flex flex-col justify-center">
             <div className="h-5/29 text-[9px] bg-[#484848] flex flex-col justify-end items-center p-1 space-y-2 rounded-r-xl">
               <button className="bg-white text-black font-bold">직원 호출</button>
-              <button className="bg-white text-black">기본 화면</button>
+              <DefaultScreenButton />
               <p className="text-white text-[5px] text-xl mb-4 text-left w-full">
                 { (x == 0 && y == 0) ? '' : '*지금은 AI 개인 맞춤형 화면입니다.' }
               </p>
@@ -253,7 +273,10 @@ const MenuPage = () => {
         <div className="w-1/5 h-full bg-[#FFC915] flex flex-col justify-center">
           <div className="h-1/2 text-[9px] bg-[#484848] flex flex-col items-center p-1 space-y-2 rounded-r-xl">
             <div className="flex flex-col gap-2 mb-2">
-              <button className="!bg-[#FFC915] text-black font-bold">
+              <button 
+                className="!bg-gray-500 text-white font-bold"
+                onClick={() => handleCategoryClick(4)}
+              >
                 추천메뉴
               </button>
               <button 
@@ -276,8 +299,7 @@ const MenuPage = () => {
               </button>
             </div>
             <div className="mt-auto flex flex-col gap-2">
-              <button className="bg-white text-black font-bold">직원 호출</button>
-              <button className="bg-white text-black">기본 화면</button>
+              <DefaultScreenButton />
               <p className="text-white text-[5px] text-xl mb-4 text-left w-full">
                 { (x == 0 && y == 0) ? '' : '*지금은 AI 개인 맞춤형 화면입니다.' }
               </p>
@@ -343,7 +365,7 @@ const HomePage = () => {
           <div className="flex-1 flex flex-col justify-center">
             <div className="h-5/29 text-[9px] bg-[#484848] flex flex-col justify-end items-center p-1 space-y-2 rounded-r-xl">
               <button className="bg-white text-black font-bold">직원 호출</button>
-              <button className="bg-white text-black">기본 화면</button>
+              <DefaultScreenButton />
               <p className="text-white text-[5px] text-xl mb-4 text-left w-full">
                 { (x == 0 && y == 0) ? '' : '*지금은 AI 개인 맞춤형 화면입니다.' }
               </p>
