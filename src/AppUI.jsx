@@ -1,5 +1,5 @@
 import "./App.css";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { BrowserRouter as Router, Routes, Route, useNavigate } from "react-router-dom";
 
 function AppUI() {
@@ -41,6 +41,10 @@ const ProgressBar = ({ step }) => {
 };
 
 const PaymentPage = () => {
+  const searchParams = useMemo(() => new URLSearchParams(window.location.search), []);
+  const x = parseInt(searchParams.get("x")) || 0;
+  const y = parseInt(searchParams.get("y")) || 0;
+
   const navigate = useNavigate();
   const totalAmount = parseInt(localStorage.getItem('totalAmount') || '0');
   
@@ -54,7 +58,7 @@ const PaymentPage = () => {
               <button className="bg-white text-black font-bold">직원 호출</button>
               <button className="bg-white text-black">기본 화면</button>
               <p className="text-white text-[5px] text-xl mb-4 text-left w-full">
-                *지금은 AI 개인 맞춤형 화면입니다.
+                { (x == 0 && y == 0) ? '' : '*지금은 AI 개인 맞춤형 화면입니다.' }
               </p>
             </div>
           </div>
@@ -105,6 +109,10 @@ const PaymentPage = () => {
 };
 
 const CartPage = () => {
+  const searchParams = useMemo(() => new URLSearchParams(window.location.search), []);
+  const x = parseInt(searchParams.get("x")) || 0;
+  const y = parseInt(searchParams.get("y")) || 0;
+  
   const navigate = useNavigate();
   const [cartItems, setCartItems] = useState(() => {
     return JSON.parse(localStorage.getItem('cartItems') || '[]');
@@ -127,7 +135,7 @@ const CartPage = () => {
               <button className="bg-white text-black font-bold">직원 호출</button>
               <button className="bg-white text-black">기본 화면</button>
               <p className="text-white text-[5px] text-xl mb-4 text-left w-full">
-                *지금은 AI 개인 맞춤형 화면입니다.
+                { (x == 0 && y == 0) ? '' : '*지금은 AI 개인 맞춤형 화면입니다.' }
               </p>
             </div>
           </div>
@@ -186,6 +194,10 @@ const CartPage = () => {
 };
 
 const MenuPage = () => {
+  const searchParams = useMemo(() => new URLSearchParams(window.location.search), []);
+  const x = parseInt(searchParams.get("x")) || 0;
+  const y = parseInt(searchParams.get("y")) || 0;
+
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [cartItems, setCartItems] = useState(() => {
     const savedCartItems = localStorage.getItem('cartItems');
@@ -266,8 +278,8 @@ const MenuPage = () => {
             <div className="mt-auto flex flex-col gap-2">
               <button className="bg-white text-black font-bold">직원 호출</button>
               <button className="bg-white text-black">기본 화면</button>
-              <p className="text-white text-[5px] text-xl mb-2 text-left w-full">
-                *지금은 AI 개인 맞춤형 화면입니다.
+              <p className="text-white text-[5px] text-xl mb-4 text-left w-full">
+                { (x == 0 && y == 0) ? '' : '*지금은 AI 개인 맞춤형 화면입니다.' }
               </p>
             </div>
           </div>
@@ -318,6 +330,10 @@ const MenuPage = () => {
 };
 
 const HomePage = () => {
+  const searchParams = useMemo(() => new URLSearchParams(window.location.search), []);
+  const x = parseInt(searchParams.get("x")) || 0;
+  const y = parseInt(searchParams.get("y")) || 0;
+
   const navigate = useNavigate();
 
   return (
@@ -329,7 +345,7 @@ const HomePage = () => {
               <button className="bg-white text-black font-bold">직원 호출</button>
               <button className="bg-white text-black">기본 화면</button>
               <p className="text-white text-[5px] text-xl mb-4 text-left w-full">
-                *지금은 AI 개인 맞춤형 화면입니다.
+                { (x == 0 && y == 0) ? '' : '*지금은 AI 개인 맞춤형 화면입니다.' }
               </p>
             </div>
           </div>
